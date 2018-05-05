@@ -1,17 +1,11 @@
 package work.payne.web
 
 
-import java.util.logging.Logger
-
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
-import akka.stream.scaladsl._
-import com.sun.javafx.util.Logging
 import com.typesafe.config.{Config, ConfigFactory}
-import work.payne.web.routers.HttpPayneWebRouter
-
-import scala.concurrent.Future
+import work.payne.web.routers.HttpPayneServiceRouter
 
 
 object Boot extends App {
@@ -25,7 +19,7 @@ object Boot extends App {
   val server = WebServerConfig(conf.getConfig("web-server"))
 
 
-  val router = new HttpPayneWebRouter()
+  val router = new HttpPayneServiceRouter()
 
 
   val bindingFuture = Http().bindAndHandle(
