@@ -7,12 +7,14 @@ import akka.stream.ActorMaterializer
 import com.typesafe.config.{Config, ConfigFactory}
 import work.payne.web.routers.HttpPayneServiceRouter
 
+import scala.concurrent.ExecutionContextExecutor
+
 
 object Boot extends App {
 
-  implicit val system = ActorSystem("Payne-Web")
-  implicit val materializer = ActorMaterializer()
-  implicit val executionContext = system.dispatcher
+  implicit val system: ActorSystem = ActorSystem("Payne-Web")
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
+  implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
 
   val conf = ConfigFactory.load
